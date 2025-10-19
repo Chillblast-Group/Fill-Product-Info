@@ -1,0 +1,11 @@
+[data-fill-product-info-loading="none"][data-fill-product-info-status="loading"],
+[data-fill-product-info-unavailable="none"][data-fill-product-info-status="unavailable"]
+{
+    display: none !important;
+}
+
+[data-fill-product-info-loading="hidden"][data-fill-product-info-status="loading"],
+[data-fill-product-info-unavailable="hidden"][data-fill-product-info-status="unavailable"]
+{
+    visibility: hidden !important;
+}
