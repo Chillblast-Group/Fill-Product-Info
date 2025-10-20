@@ -29,6 +29,7 @@
                     const link_el = el.querySelector('[data-fill-product-info="link"]');
                     const image_el = el.querySelector('[data-fill-product-info="image"]');
                     const title_el = el.querySelector('[data-fill-product-info="title"]');
+                    const value_if_current_el = el.querySelector('[data-fill-product-info-value-if-current]');
 
                     let image_width = '600';
                     if (image_el?.dataset?.fillProductInfoImageWidth) {
@@ -47,6 +48,8 @@
                         return null;
                     }
 
+                    var isCurrent = currentSku === sku
+
                     const tags = data[0].tags || [];
                     const status = tags.includes("LeadTime_Z") ? "unavailable" : "ready";
 
@@ -54,7 +57,10 @@
                     if (link_el) link_el.href = data[0].url;
                     if (image_el) image_el.src = "https://static.chillblast.com" + data[0].imageUrl + '?width=' + image_width;
                     if (title_el) title_el.textContent = data[0].name;
-                    if (currentSku === sku) el.dataset.fillProductInfoCurrent = "current";
+                    if (isCurrent) el.dataset.fillProductInfoCurrent = "current";
+                    if (isCurrent && value_if_current_el) {
+                        value_if_current_el.textContent = value_if_current_el.dataset.fillProductInfoValueIfCurrent
+                    }
                     el.dataset.fillProductInfoStatus = status;
 
                     return true;
