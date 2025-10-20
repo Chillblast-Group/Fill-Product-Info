@@ -22,14 +22,16 @@
             const sku = el.dataset.fillProductInfoSku;
             const apiUrl = "https://api.chillblast.com/Product/GetProducts?productCodes=" + sku;
 
+            const price_el = el.querySelector('[data-fill-product-info="price"]');
+            const link_el = el.querySelector('[data-fill-product-info="link"]');
+            const image_el = el.querySelector('[data-fill-product-info="image"]');
+            const title_el = el.querySelector('[data-fill-product-info="title"]');
+            const value_if_current_el = el.querySelector('[data-fill-product-info-value-if-current]');
+            const remove_if_unavailable = el.querySelector('[data-fill-product-info-unavailable="hide"]');
+
             return fetch(apiUrl)
                 .then(r => r.json())
                 .then(data => {
-                    const price_el = el.querySelector('[data-fill-product-info="price"]');
-                    const link_el = el.querySelector('[data-fill-product-info="link"]');
-                    const image_el = el.querySelector('[data-fill-product-info="image"]');
-                    const title_el = el.querySelector('[data-fill-product-info="title"]');
-                    const value_if_current_el = el.querySelector('[data-fill-product-info-value-if-current]');
 
                     let image_width = '600';
                     if (image_el?.dataset?.fillProductInfoImageWidth) {
@@ -62,12 +64,18 @@
                         value_if_current_el.textContent = value_if_current_el.dataset.fillProductInfoValueIfCurrent
                     }
                     el.dataset.fillProductInfoStatus = status;
+                    if(remove_if_unavailable && status === 'unavailable') {
+                        el.remove()
+                    }
 
                     return true;
                 })
                 .catch(err => {
                     console.error("Error fetching product:", err);
                     el.dataset.fillProductInfoStatus = "unavailable";
+                    if(remove_if_unavailable) {
+                        el.remove()
+                    }
                     return err;
                 });
         });
