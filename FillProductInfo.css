@@ -1,6 +1,6 @@
-[data-fill-product-info-loading="none"][data-fill-product-info-status="loading"],
-[data-fill-product-info-pending="none"][data-fill-product-info-status="pending"],
-[data-fill-product-info-unavailable="none"][data-fill-product-info-status="unavailable"]
+[data-fill-product-info-loading="hide"][data-fill-product-info-status="loading"],
+[data-fill-product-info-pending="hide"][data-fill-product-info-status="pending"],
+[data-fill-product-info-unavailable="hide"][data-fill-product-info-status="unavailable"]
 {
     display: none !important;
 }
