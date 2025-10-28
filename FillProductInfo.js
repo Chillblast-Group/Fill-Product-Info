@@ -80,9 +80,18 @@
                 });
         });
 
-        Promise.all(fetchPromises).then(() => {
+        Promise.all(fetchPromises).then(results => {
             console.log('All products processed');
+            const event = new CustomEvent('fillProductInfoDone', {
+                detail: {
+                    results,
+                    processedCount: results.length,
+                    timestamp: Date.now()
+                }
+            });
+            window.dispatchEvent(event);
         });
+
     }
 
     // Run once DOM is loaded
