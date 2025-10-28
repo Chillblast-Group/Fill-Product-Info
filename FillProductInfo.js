@@ -27,7 +27,7 @@
             const image_el = el.querySelector('[data-fill-product-info="image"]');
             const title_el = el.querySelector('[data-fill-product-info="title"]');
             const value_if_current_el = el.querySelector('[data-fill-product-info-value-if-current]');
-            const remove_if_unavailable = el.querySelector('[data-fill-product-info-unavailable="hide"]');
+            const remove_if_unavailable = el.matches('[data-fill-product-info-unavailable="hide"]');
 
             return fetch(apiUrl)
                 .then(r => r.json())
